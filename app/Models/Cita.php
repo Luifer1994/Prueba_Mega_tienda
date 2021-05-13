@@ -13,7 +13,6 @@ class Cita extends Model
         'descripcion',
         'cupos_totales',
         'cupos_disponibles',
-        'copos_disponibles',
         'cod_usuario_prestador',
         'fecha',
     ];

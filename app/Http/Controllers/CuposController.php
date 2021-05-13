@@ -17,9 +17,9 @@ class CuposController extends Controller
     public function index()
     {
         $cupos = Cupo::select('cupos.id','cupos.cod_cita','users.razon_social as Nombre Solicitante','citas.fecha as Fecha de cita')
-                    ->where('cod_usuario_solicitante', Auth::user()->id)
                     ->join('users', 'cupos.cod_usuario_solicitante', '=', 'users.id')
-                    ->join('citas', 'cupos.fecha_cita', '=', 'citas.fecha')->get();
+                    ->join('citas', 'cupos.fecha_cita', '=', 'citas.fecha')
+                    ->where('cod_usuario_solicitante', Auth::user()->id)->get();
         return $cupos;
     }
 
