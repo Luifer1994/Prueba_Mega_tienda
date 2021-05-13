@@ -20,7 +20,7 @@ class CitasController extends Controller
     public function index()
     {
         $citas = Cita::select('citas.id','citas.descripcion','citas.cupos_totales', 'citas.cupos_disponibles',
-                             'citas.fecha', 'users.razon_social as nombre_prestador')
+                             'citas.fecha', 'users.razon_social as Nombre prestador')
                         ->join('users', 'citas.cod_usuario_prestador', '=', 'users.id')->get();
 
         return $citas;
@@ -34,9 +34,9 @@ class CitasController extends Controller
      */
     public function store(CreateCitaRequest $request)
     {
-
+        //instanciamos la fecha actual
         $fechaHoy = date("Y-m-d");
-
+        //paseamos con carbon la fecha atual para poder hacer operacion con ella
         Carbon::parse($fechaHoy)->format("Y-m-d");
 
         if ($request->fecha <= $fechaHoy) {
@@ -82,7 +82,11 @@ class CitasController extends Controller
      */
     public function show($id)
     {
-        //
+        $cita = Cita::select('citas.id','citas.descripcion','citas.cupos_totales', 'citas.cupos_disponibles',
+                             'citas.fecha', 'users.razon_social as Nombre prestador')
+                        ->join('users', 'citas.cod_usuario_prestador', '=', 'users.id')
+                        ->where('citas.id', $id)->get();
+        return $cita;
     }
 
     /**
