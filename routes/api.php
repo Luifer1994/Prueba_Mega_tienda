@@ -22,16 +22,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
-
+//crear usuario
 Route::post('/usuarios/crear', [UsuariosController::class,'store']);
 
+//login
 Route::post('/login', [LoginController::class,'login']);
 
+
+//RUTAS PROTEGIDAS POR SESION
 Route::group(['middleware'=>'auth:api'], function(){
 
     Route::apiResource('/usuarios', UsuariosController::class);
