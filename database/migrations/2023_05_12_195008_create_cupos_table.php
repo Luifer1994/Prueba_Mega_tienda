@@ -16,7 +16,9 @@ class CreateCuposTable extends Migration
         Schema::create('cupos', function (Blueprint $table) {
             $table->id();
             $table->integer('cod_cita');
+            $table->date('fecha_cita');
             $table->integer('cod_usuario_solicitante');
+            $table->integer('cod_usuario_prestador');
             $table->timestamps();
         });
     }
